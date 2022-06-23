@@ -51,15 +51,23 @@ namespace Poker
         }
 
         /// <summary>
-        /// Compares two hands and returns a comparison result enum that describes wether the
-        /// first hand is better than, the same as, or worse than the second hand.
+        /// Compares two hands and returns the higher of the two hands.
         /// </summary>
         /// <param name="firstHand">The first hand retrieved from the ParseHand method.</param>
         /// <param name="secondHand">The second hand to compare the first hand to</param>
-        /// <returns>How the first hand compares to the second hand. Better, Same, or Worse.</returns>
-        public ComparisonResult CompareHands(Hand firstHand, Hand secondHand)
+        /// <returns>The higher of the two hands.</returns>
+        public Hand CompareHands(Hand firstHand, Hand secondHand)
         {
-            return handManager.CompareHands(firstHand, secondHand);
+            ComparisonResult result = handManager.CompareHands(firstHand, secondHand);
+            switch (result)
+            {
+                case ComparisonResult.Better:
+                    return firstHand;
+                case ComparisonResult.Worse:
+                    return secondHand;
+                default:
+                    return null; // Same case falls into this.
+            }
         }
     }
 }

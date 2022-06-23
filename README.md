@@ -20,12 +20,12 @@ Hand hand = client.ParseHand(cards);
 // hand.Definition.HandIdentifier == "straight_flush";
 ```
 
-Once a hand is created, it can then be compared to other hands by calling the `CompareHands` method and passing in two hands. This will return a `ComparisonResult` enum with a value of either `Better`, `Same`, or `Worse` with regards to how the first hand passed in compares to the second hand.
+Once a hand is created, it can then be compared to other hands by calling the `CompareHands` method and passing in two hands. The return value of this method is the better of the two hands, or null in the case that both hands are equal.
 
 ```
 Hand firstHand = ... // two pair
 Hand secondHand = ... // three of a kind
 
-ComparisonResult result = client.CompareHands(firstHand, secondHand);
-// result == ComparisonResult.Worse
+Hand better = client.CompareHands(firstHand, secondHand);
+// better.Definition.HandIdentifier == "three_of_a_kind"
 ```
