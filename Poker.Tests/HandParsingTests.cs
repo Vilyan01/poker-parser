@@ -133,6 +133,7 @@ namespace Poker.Tests
             Assert.Equal("straight", result.Definition.HandIdentifier);
         }
 
+        [Fact]
         public void HandManager_HandParser_RequiresFiveCardsForStraight()
         {
             // Ace high.
